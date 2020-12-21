@@ -1,0 +1,356 @@
+CREATE DATABASE ShopNetwork;
+
+CREATE TABLE Regional_offices (
+    RegID varchar(255) NOT NULL PRIMARY KEY,
+    name_reg varchar(255) not null,
+    location_reg varchar(255) not null,
+    address_reg varchar(255) not null,
+    sumprofits int
+);
+
+CREATE TABLE Head_offices (
+    HeadID varchar(255) NOT NULL PRIMARY KEY,
+    name_head varchar(255) not null,
+    phone_head varchar(50) not null,
+    address_head varchar(255) not null,
+    email_head varchar(255) not null,
+	coutry_head varchar(255) not null,
+	profit_head int,
+	RegID varchar(255) FOREIGN KEY REFERENCES Regional_offices(RegID),
+);
+
+CREATE TABLE Shops(
+    ShopID varchar(255) NOT NULL PRIMARY KEY,
+    name_shop varchar(255) not null,
+    address_shop varchar(255) not null,
+	HeadID varchar(255) FOREIGN KEY REFERENCES Head_offices(HeadID),
+);
+
+
+CREATE TABLE Cities(
+    CityID varchar(255) NOT NULL PRIMARY KEY,
+    population_city varchar(255) not null,
+	ShopID varchar(255) FOREIGN KEY REFERENCES Shops(ShopID),
+);
+
+
+ALTER TABLE Employees ADD EducationID varchar(255) FOREIGN KEY REFERENCES Education(EducationID)
+
+ALTER TABLE Employees ADD JobinfoID varchar(255) FOREIGN KEY REFERENCES Jobinfo(JobinfoID)
+
+ALTER TABLE Orders ADD ItemID varchar(255) FOREIGN KEY REFERENCES Items(ItemID)
+
+Insert into Employees(EmployeeID, firstName, lastName, phone, email, ShopID, Managerid, EducationID, JobinfoID ) values
+('1', 'Андрій', 'Мельник', '+380129384932','work1@gmail.com',null ,null , '1', '1'), 
+('2', 'Олексій', 'Баранько', '+380235457554','work2@gmail.com',null ,null , '2', '2'), 
+('3', 'Дмитро', 'Якимченко', '+380624656356','work3@gmail.com',null ,null , '2', '3'), 
+('4', 'Сергій', 'Балич', '+380345635665', 'work4@gmail.com',null,null , '3','4'), 
+('5', 'Володимир', 'Яременко', '+380879556763','work5@gmail.com',null ,null , '4', '5'), 
+('6', 'Аскольд', 'Тобчанський', '+380496503024','work6@gmail.com',null ,null , '6', '6'), 
+('7', 'Альберт', 'Соболев', '+380143534562','work7@gmail.com',null ,null , '5', '7'), 
+('8', 'Богдан', 'Белов', '+380563456547','work8@gmail.com',null ,null , '1', '8'), 
+('9', 'Ростислав', 'Шпонька', '+380657658543','work9@gmail.com', '1', '1', '1', '9'), 
+('10', 'Валентин', 'Яковлев', '+380333533356','work10@gmail.com', '1', '1', '1', '10'), 
+('11', 'Влад', 'Кошель', '+380898584848','work11@gmail.com', '2', '1', '2', '11'), 
+('12', 'Вадим', 'Шуров', '+380588474821','work12@gmail.com', '2', '1', '2', '12'), 
+('13', 'Гліб', 'Жук', '+380992374728','work13@gmail.com', '3', '1', '1', '13'), 
+('14', 'Григорій', 'Гресь', '+380123542135','work14@gmail.com', '3', '1', '2', '14'), 
+('15', 'Назарій', 'Франчук', '+380631344566','work15@gmail.com', '4', '1', '2', '15'), 
+('16', 'Устим', 'Кремешний', '+380678474643','work16@gmail.com', '4', '1', '2', '16'), 
+('17', 'Юрій', 'Гиндин', '+380546435362','work17@gmail.com', '5', '1', '1', '17'), 
+('18', 'Ян', 'Кабіров', '+380465678546','work18@gmail.com', '5', '1', '1', '18'), 
+('19', 'Ярослав', 'Сипливий', '+380432466285','work19@gmail.com', '6', '2', '3', '19'), 
+('20', 'Олесь', 'Кукуюк', '+380990090999','work20@gmail.com', '6', '2', '3', '20'), 
+('21', 'Лев', 'Жураковський', '+380246758569','work21@gmail.com', '7', '2', '3', '21'), 
+('22', 'Любомир', 'Кистень', '+380686458484','work22@gmail.com', '7', '2', '2', '22'), 
+('23', 'Маркіян', 'Кобзар', '+380254645737','work23@gmail.com', '8', '2', '1', '23'), 
+('24', 'Марян', 'Черненький', '+380546356322','work24@gmail.com', '8', '2', '3', '24'), 
+('25', 'Мирослав', 'Книженко', '+380356356891','work25@gmail.com', '9', '2', '3', '25'), 
+('26', 'Мирон', 'Цивинський', '+380565676378','work26@gmail.com', '9', '2', '1', '26'), 
+('27', 'Тарас', 'Рибак', '+380373465712','work27@gmail.com', '10', '2', '3', '27'), 
+('28', 'Михайло', 'Чепелюк', '+380524546677','work28@gmail.com', '10', '2', '3', '28'), 
+('29', 'Ілля', 'Дьяконенко', '+380798078006','work29@gmail.com', '11', '2', '1', '29'), 
+('30', 'Микола', 'Лавров', '+380234532643','work30@gmail.com', '11', '2', '1', '30'), 
+('31', 'Євген', 'Іванов', '+380068895794','work31@gmail.com', '12', '2', '1', '31'), 
+('32', 'Остап', 'Капорин', '+380478637844','work32@gmail.com', '12', '2', '1', '32'), 
+('33', 'Матвій', 'Анашкин', '+380894789484','work33@gmail.com', '13', '3', '1', '33'), 
+('34', 'Мартин', 'Антропов', '+380786784684','work34@gmail.com', '13', '3', '1', '34'), 
+('35', 'Павло', 'Ребрик', '+380154543511','work35@gmail.com', '14', '3', '2', '35'), 
+('36', 'Петро', 'Нікітін', '+380563635647','work36@gmail.com', '14', '3', '2', '36'), 
+('37', 'Роман', 'Ребрик', '+380234634526','work37@gmail.com', '15', '3', '2', '37'), 
+('38', 'Слава', 'Дзигора', '+380346346346','work38@gmail.com', '15', '3', '2', '38'), 
+('39', 'Степан', 'Бевз', '+380856786888','work39@gmail.com', '16', '3', '3', '39'), 
+('40', 'Семен', 'Винник', '+380888544332','work40@gmail.com', '16', '3', '2', '40'), 
+('41', 'Іван', 'Самаєв', '+380463564577','work41@gmail.com', '17', '4', '1', '41'), 
+('42', 'Данило', 'Дмитренко', '+380985987252','work42@gmail.com', '17', '4', '1', '42'), 
+('43', 'Алік', 'Миронов', '+380576754676','work43@gmail.com', '18', '4', '2', '43'), 
+('44', 'Северин', 'Деньга', '+380675475788','work44@gmail.com', '18', '4', '2', '44'), 
+('45', 'Федір', 'Шранько', '+380476789785','work45@gmail.com', '19', '4', '3', '45'), 
+('46', 'Ілля', 'Лазунько', '+380958759179','work46@gmail.com', '19', '4', '3', '46'), 
+('47', 'Павло', 'Лазуренко', '+380695782722','work47@gmail.com', '20', '4', '2', '47'), 
+('48', 'Микола', 'Агаев', '+380222569962','work48@gmail.com', '20', '4', '1', '48'), 
+('49', 'Євген', 'Поліщук', '+380653256352','work49@gmail.com', '21', '5', '6', '49'), 
+('50', 'Андрій', 'Дубров', '+380734685685','work50@gmail.com', '21', '5', '6', '50'), 
+('51', 'Сергій', 'Іванченко', '+380245324522','work51@gmail.com', '22', '5', '6', '51'), 
+('52', 'Володимир', 'Лобода', '+380756789695','work52@gmail.com', '22', '5', '6', '52'), 
+('53', 'Аскольд', 'Лавський', '+380956978746','work53@gmail.com', '23', '5', '6', '53'), 
+('54', 'Альберт', 'Кочур', '+380383983294','work54@gmail.com', '23', '5', '6', '54'), 
+('55', 'Тарас', 'Баєв', '+380437507419','work55@gmail.com', '24', '6', '6', '55'), 
+('56', 'Влад', 'Карабак', '+380453452344','work56@gmail.com', '24', '6', '6', '56'), 
+('57', 'Володимир', 'Детьов', '+380452435256','work57@gmail.com', '25', '6', '6', '57'), 
+('58', 'Марян', 'Антонов', '+380524546424','work58@gmail.com', '25', '6', '6', '58'), 
+('59', 'Устим', 'Гаврилов', '+380623644789','work59@gmail.com', '26', '6', '6', '59'), 
+('60', 'Юрій', 'Ханумак', '+380565474567','work60@gmail.com', '26', '6', '6', '60'), 
+('61', 'Євген', 'Кораблев', '+380465674573','work61@gmail.com', '27', '6', '6', '61'), 
+('62', 'Марк', 'Власов', '+380468959006','work62@gmail.com', '27', '6', '6', '62'), 
+('63', 'Олексій', 'Кузнєцов', '+380546437425','work63@gmail.com', '28', '7', '4', '63'), 
+('64', 'Дмитро', 'Панас', '+380634564562','work64@gmail.com', '28', '7', '5', '64'), 
+('65', 'Олексій', 'Слободяник', '+380643563465','work65@gmail.com', '29', '7', '5', '65'), 
+('66', 'Андрій', 'Яценко', '+380866579559','work66@gmail.com', '29', '7', '5', '66'), 
+('67', 'Тарас', 'Куприй', '+380779757867','work67@gmail.com', '30', '8', '4', '67'), 
+('68', 'Андріан', 'Рудняк', '+380907789474','work68@gmail.com', '30', '8', '4', '68'), 
+('69', 'Олег', 'Горлачев', '+380678678474','work69@gmail.com', '31', '8', '5', '69'), 
+('70', 'Данило', 'Полупан', '+380867867867','work70@gmail.com', '31', '8', '5', '70'), 
+('71', 'Прокіп', 'Даценко', '+380256426632','work71@gmail.com', '32', '8', '4', '71'), 
+('72', 'Юліан', 'Паламарчук', '+380876748484','work72@gmail.com', '32', '8', '4', '72'), 
+('73', 'Юрій', 'Титоренко', '+380467867843','work73@gmail.com', '33', '7', '5', '73'), 
+('74', 'Вячеслав', 'Старожук', '+380994324251','work74@gmail.com', '33', '7', '5', '74'), 
+('75', 'Іван', 'Шульга', '+380546356624','work75@gmail.com', '34', '7', '4', '75'), 
+('76', 'Тарас', 'Свиридов', '+380467784845','work76@gmail.com', '34', '7', '5', '76')
+
+
+Insert into Custinfo(CustinfoID, cardnumber, availableamount) values
+('1', '100001', '10'),
+('2', '100002', '8'),
+('3', '100003', '5'),
+('4', '100004', '100'),
+('5', '100005', '40'),
+('6', '100006', '34'),
+('7', '100007', '26'),
+('8', '100008', '25'),
+('9', '100009', '10'),
+('10', '100010', '9'),
+('11', '100011', '29'),
+('12', '100012', '31'),
+('13', '100013', '32'),
+('14', '100014', '44'),
+('15', '100015', '54'),
+('16', '100016', '56'),
+('17', '100017', '97'),
+('18', '100018', '132'),
+('19', '100019', '13'),
+('20', '100020', '45'),
+('21', '100021', '49'),
+('22', '100022', '51'),
+('23', '100023', '67'),
+('24', '100024', '51'),
+('25', '100025', '52'),
+('26', '100026', '53'),
+('27', '100027', '28'),
+('28', '100028', '29'),
+('29', '100029', '61'),
+('30', '100030', '64'),
+('31', '100031', '65'),
+('32', '100032', '14'),
+('33', '100033', '8'),
+('34', '100034', '0'),
+('35', '100035', '76')
+
+Insert into Customers(CustomerID, address_customer, email_customer, CustinfoID) values
+('1', 'Шевченка 18', 'cust1@gmail.com', '1'),
+('2', 'Коновальця 3', 'cust2@gmail.com', '2'),
+('3', null, null, null),
+('4', null, null, null),
+('5', null, null, null),
+('6', 'Зелена 8', 'cust6@gmail.com', '3'),
+('7', null, null, null),
+('8', 'Чорновола 131а', 'cust8@gmail.com', '4'),
+('9', 'Коперніка 12', 'cust9@gmail.com', '5'),
+('10', 'Зелена 147а', 'cust10@gmail.com', '6'),
+('11', null, null, null),
+('12', null, null, null),
+('13', null, null, null),
+('14', 'Пачсічна 88', 'cust14@gmail.com', '7'),
+('15', 'Базарна 5', 'cus15t@gmail.com', '8'),
+('16', null, null, null),
+('17', null, null, null),
+('18', null, null, null),
+('19', 'Бузкова 12', 'cust19@gmail.com', '9'),
+('20', 'Погулянка 17', 'cust20@gmail.com', '10'),
+('21', 'Академіка Люльки 12', 'cust21@gmail.com', '11'),
+('22', null, null, null),
+('24', null, null, null),
+('25', 'Антоновича 56', 'cust25@gmail.com', '12'),
+('26', 'Героїв Упа 10', 'cust26@gmail.com', '13'),
+('27', 'Кульпарківська 131', 'cust27@gmail.com', '14'),
+('28', null, null, null),
+('29', null, null, null),
+('30', null, null, null),
+('31', null, null, null),
+('32', 'Зелена 89', 'cust32@gmail.com', null),
+('33', null, null, null),
+('34', null, null, null),
+('35', null, null, null),
+('36', null, null, null),
+('37', null, null, null),
+('38', 'Володимира Великого 14', 'cust38@gmail.com', '15'),
+('39', 'Стрийська 228', 'cust39@gmail.com', '16'),
+('40', 'Зелена 15', 'cust40@gmail.com', '17'),
+('41', 'Бузкова 1', 'cust41@gmail.com', '18'),
+('42', null, null, null),
+('43', null, null, null),
+('44', null, null, null),
+('45', null, null, null),
+('46', null, null, null),
+('47', 'Лесі Українки 14', 'cust47@gmail.com', '19'),
+('48', 'Івана Франка 10', 'cust48@gmail.com', '20'),
+('49', 'Панаса Мирного 11', 'cust49@gmail.com', '21'),
+('50', null, null, null),
+('51', 'Джорджа Вашингтона 8', 'cust51@gmail.com', '22'),
+('52', 'Свободи 1', 'cust52@gmail.com', '23'),
+('53', 'Гнатюка 5', 'cust53@gmail.com', '24'),
+('54', null, null, null),
+('55', null, null, null),
+('56', null, null, null),
+('57', null, null, null),
+('58', 'Порохова 4', 'cust58@gmail.com', null),
+('59', null, null, null),
+('60', 'Медової Печери 8', 'cust60@gmail.com', '25'),
+('61', 'Біла 11', 'cust61@gmail.com', '26'),
+('62', null, null, null),
+('63', null, null, null),
+('64', null, null, null),
+('65', null, null, null),
+('67', null, null, null),
+('68', 'Скнилівська 84', 'cust68@gmail.com', null),
+('69', null, null, null),
+('70', null, null, null),
+('71', null, null, null),
+('72', null, null, null),
+('73', 'Десята 8', 'cust73@gmail.com', '27'),
+('74', null, null, null),
+('75', 'Акацієва 12', 'cust75@gmail.com', '28'),
+('76', null, null, null),
+('77', null, null, null),
+('78', null, null, null),
+('79', null, null, null),
+('80', 'Архипенка 89', 'cust80@gmail.com', '29'),
+('81', null, null, null),
+('82', null, null, null),
+('83', null, null, null),
+('84', 'Коновальця 6', 'cust84@gmail.com', '30'),
+('85', null, null, null),
+('86', null, null, null),
+('87', null, null, null),
+('88', null, null, null),
+('89', 'Бабія 12', 'cust89@gmail.com', '31'),
+('90', null, null, null),
+('91', null, null, null),
+('92', 'Лазаренка 5', 'cust92@gmail.com', '32'),
+('93', null, null, null),
+('94', null, null, null),
+('95', 'Бандери 6', 'cust95@gmail.com', '33'),
+('96', null, null, null),
+('97', null, null, null),
+('98', null, null, null),
+('99', 'Березова 16', 'cust99@gmail.com', '34'),
+('100', null, null, null),
+('101', null, null, null),
+('102', null, null, null),
+('103', null, null, null),
+('104', null, null, null),
+('105', null, null, null),
+('106', null, null, null),
+('107', null, null, null),
+('108', 'Банаха 6', 'cust108@gmail.com', '35'),
+('109', null, null, null),
+('110', null, null, null),
+('111', null, null, null),
+('112', null, null, null),
+('113', null, null, null),
+('114', null, null, null),
+('115', null, null, null),
+('116', 'Зелена 11', 'cust116@gmail.com', null),
+('117', null, null, null),
+('118', null, null, null),
+('119', null, null, null),
+('120', null, null, null)
+
+Insert into Brands(BrandID, Brandname) values
+('1', 'Pull and bear'),
+('2', 'Zara'),
+('3', 'Gucci'),
+('4', 'Nike'),
+('5', 'Adidas'),
+('6', 'Tommy Hilfiger'),
+('7', 'Prada'),
+('8', 'Versace'),
+('9', 'Puma'),
+('10', 'Hugo Boss'),
+('11', 'Louis Vuitton'),
+('12', 'Moschino'),
+('13', 'Fendi'),
+('14', 'Armani'),
+('15', 'Diesel'),
+('16', 'Marc O Polo'),
+('17', 'Lacoste'),
+('18', 'Levis'),
+('19', 'Chanel')
+
+Select CustinfoID, availableamount
+from Custinfo
+where availableamount > '10'
+
+Select CustomerID
+from Customers
+Where not CustinfoID = 'null'
+
+Select Orders.OrderID, Employees.ShopID, Orders.order_sum
+from Orders
+FULL JOIN Employees ON Orders.EmployeeId = Employees.EmployeeID
+
+Select cityname
+from Cities
+Where population_city > 1000000
+
+SELECT Employees.EmployeeID, Education.name_education
+FROM Employees
+FULL OUTER JOIN Education ON Education.EducationID = Employees.EducationID
+Where name_education = 'ЛНУ'
+ORDER BY Employees.EmployeeID;
+
+Select avg(order_sum)
+from Orders
+
+SELECT Employees.EmployeeID, Orders.OrderID
+FROM Employees 
+FULL OUTER JOIN Orders ON Employees.EmployeeID=Orders.EmployeeId 
+Where order_sum > 10000 
+ORDER BY Employees.EmployeeID;
+
+SELECT ItemID, color_item, amount,
+CASE
+WHEN amount < 40 THEN 'ДОВЕЗТИ НА СКЛАД 50 ОДИНИЦЬ'
+WHEN amount < 100 and amount > 40 THEN 'ДОВЕЗТИ НА СКЛАД 20 ОДИНИЦЬ'
+ELSE 'ТОВАРУ ДОСТАТНЬО'
+END AS РЕЗУЛЬТАТ
+FROM Items;
+
+SELECT *
+From Education
+Order by location_education
+
+SELECT EmployeeID, ShopID
+From Employees
+Where ShopID IN (1, 2, 3, 4)
+
+SELECT EmployeeID, phone
+from Employees
+Where phone like '+38034%'
+
+SELECT MAX(amount) as МАКСИМУМ
+from Items
+
+SELECT * 
+from Items
+Where amount = 361
