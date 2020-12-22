@@ -1,0 +1,111 @@
+CREATE TABLE Stocks(
+    StockID varchar(255) NOT NULL PRIMARY KEY,	
+	quantity int,
+	ItemID varchar(255) foreign key references Items(ItemID),
+
+);
+
+CREATE TABLE Brands(
+    BrandID varchar(255) NOT NULL PRIMARY KEY,
+    brandname varchar(255) not null,
+);
+
+CREATE TABLE Categories(
+    CategoryID varchar(255) NOT NULL PRIMARY KEY,
+    categoryname varchar(255) not null,
+);
+
+ALTER TABLE Items ADD BrandID varchar(255) FOREIGN KEY REFERENCES Brands(BrandID)
+
+ALTER TABLE Items ADD CategoryID varchar(255) FOREIGN KEY REFERENCES Categories(CategoryID)
+Insert into Education(EducationID, type_education, name_education, location_education, EmployeeID) values 
+(,'','','',),
+
+Insert into Items(ItemID, type_item, color_item, size_item, amount, StockID, BrandID, CategoryID) values
+('1', 'Блуза1', 'Чорний', '40', '83', '1', '1', '1'),
+('2', 'Футболка1', 'Чорний', '38', '61', '1', '1', '2'),
+('3', 'Сорочка1', 'Червоний', '38', '145', '1', '1', '3'),
+('4', 'Спідня білизна1', 'Зелений', '42', '29', '1', '2', '4'),
+('5', 'Куртка1', 'Сірий', '36', '180', '1', '2', '5'),
+('6', 'Штани1', 'Чорний', '36', '100', '1', '3', '6'),
+('7', 'Плаття1', 'Сірий', '42', '46', '1', '4', '7'),
+('8', 'Чоботи1', 'Коричневий', '40', '312', '2', '5', '8'),
+('9', 'Светр1', 'Фіолетовий', '38', '128', '2', '6', '9'),
+('10', 'Піджак1', 'Рожевий', '38', '182', '2', '7', '10'),
+('11', 'Бомбер1', 'Чорний', '40', '100', '2', '8', '11'),
+('12', 'Кросівки1', 'Чорний', '36', '10', '3', '9', '12'),
+('13', 'Сандалі1', 'Чорний', '42', '11', '3', '10', '13'),
+('14', 'Туфлі1', 'Синій', '44', '13', '3', '11', '14'),
+('15', 'Окуляри1', 'Синій', '46', '24', '3', '12', '15'),
+('16', 'Шапка1', 'Блакитний', '38', '8', '3', '13', '16'),
+('17', 'Кепка1', 'Чорний', '36', '4', '3', '14', '17'),
+('18', 'Шарф1', 'Чорний', '40', '24', '3', '15', '18'),
+('19', 'Блуза2', 'Червоний', '42', '8', '3', '16', '1'),
+('20', 'Футболка2', 'Червоний', '40', '8', '3', '17', '2'),
+('21', 'Сорочка2', 'Зелений', '38', '167', '4', '18', '3'),
+('22', 'Спідня білизна2', 'Зелений', '38', '214', '4', '19', '4'),
+('23', 'Куртка2', 'Зелений', '38', '179', '4', '1', '5'),
+('24', 'Штани2', 'Блакитний', '38', '21', '4', '2', '6'),
+('25', 'Плаття2', 'Червоний', '38', '38', '4', '3', '7'),
+('26', 'Чоботи2', 'Фіолетовий', '40', '240', '4', '18', '8'),
+('27', 'Светр2', 'Оранжевий', '42', '51', '4', '10', '9'),
+('28', 'Піджак2', 'Чорний', '44', '50', '4', '12', '10'),
+('29', 'Бомбер2', 'Чорний', '36', '189', '5', '4', '11'),
+('30', 'Кросівки2', 'Чорний', '40', '361', '5', '5', '12'),
+('31', 'Сандалі2', 'Червоний', '42', '201', '5', '14', '13'),
+('32', 'Туфлі2', 'Червоний', '36', '307', '5', '15', '14'),
+('33', 'Окуляри2', 'Фіолетовий', '38', '62', '5', '16', '15'),
+('34', 'Шапка2', 'Блакитний', '40', '50', '5', '17', '16')
+Insert into Stocks(StockID, quantity) values
+('1', '644'),
+('2', '722'),
+('3', '110'),
+('4', '767'),
+('5', '989')
+
+SELECT *
+FROM Orders
+ORDER BY order_sum
+
+SELECT *
+FROM Orders
+ORDER BY order_sum DESC
+
+SELECT COUNT(ShopID), CityID
+FROM Shops
+GROUP BY CityID
+HAVING COUNT(ShopID)>1
+
+SELECT *
+FROM Shops
+WHERE address_shop
+LIKE 'К%'
+
+SELECT *
+FROM Orders
+WHERE order_sum BETWEEN 1000 AND 3000
+
+
+SELECT AVG(ORDER_SUM)
+FROM ORDERS
+
+SELECT DISTINCT NAME_SHOP
+FROM Shops
+
+
+SELECT Education.EducationID, Employees.lastName, Employees.firstName
+FROM Education
+INNER JOIN Employees ON Education.EducationID=Employees.EducationID
+
+SELECT Employees.EmployeeID, Orders.order_date, Orders.order_sum
+FROM Employees
+INNER JOIN Orders ON Employees.EmployeeID=Orders.EmployeeId
+
+SELECT ORDERID, ORDER_SUM,
+CASE
+	WHEN ORDER_SUM > 1500 THEN 'THE ORDER_SUM IS GRATER THAN 1500'
+	WHEN ORDER_SUM = 1500 THEN 'THE ORDER_SUM IS 1500'
+	ELSE 'THE ORDER_SUM IS UNDER 1500'
+END AS ORDER_SUMTEXT
+FROM Orders
+
